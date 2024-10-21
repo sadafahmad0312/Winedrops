@@ -8,11 +8,27 @@ export default tseslint.config(
   { ignores: ['dist'] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
-    files: ['**/*.{ts,tsx}'],
+    files: ['**/*.{ts,tsx,jsx}'],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
     },
+// Additional config start
+    parser: "babel-eslint", // or "@babel/eslint-parser" for Babel 7
+    parserOptions: {
+      ecmaVersion: 2020,
+      sourceType: "module",
+      ecmaFeatures: {
+        jsx: true, // Enable JSX
+      },
+    },
+    env: {
+      browser: true,
+      es6: true,
+      node: true,
+    },
+
+    // end
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
